@@ -6,16 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>시계부 (Time Account Book) - 시간을 자산처럼 관리하세요</title>
     <meta name="description" content="남은 하루 시간을 가계부처럼 관리하는 프리미엄 할 일 목록 앱입니다.">
-    <!-- Google Fonts: Outfit -->
+    <!-- Google Fonts: Outfit & Gaegu (for classic mode) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Gaegu:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#e0c3fc">
 </head>
 
-<body>
+<body data-layout="modern">
     <div class="background-gradient"></div>
 
     <!-- Widget Bubble -->
@@ -30,10 +32,31 @@
             <div class="header-top">
                 <button id="mini-mode-btn" class="mini-btn" title="위젯 모드로 전환">🔳</button>
                 <h1 id="main-title">시계부 <span class="subtitle">Time Acct.</span></h1>
-                <button id="theme-toggle" class="theme-btn" aria-label="테마 변경">🌙</button>
+                <div class="button-group">
+                    <button id="layout-toggle" class="mode-btn" title="시각화 모드 전환">🎨</button>
+                    <button id="theme-toggle" class="theme-btn" aria-label="테마 변경">🌙</button>
+                </div>
             </div>
             <div class="date-display" id="current-date">2026. 02. 11.</div>
         </header>
+
+        <!-- Classic Planner Visual (Clock style as requested) -->
+        <section id="classic-planner" class="classic-planner hidden">
+            <div class="clock-frame">
+                <div class="clock-face-classic shadow-fx">
+                    <svg id="clock-svg" viewBox="0 0 200 200">
+                        <circle cx="100" cy="100" r="95" fill="white" stroke="#333" stroke-width="2" />
+                        <g id="clock-marks"></g>
+                        <g id="clock-slices-group"></g>
+                        <g id="clock-labels-group"></g>
+                        <circle cx="100" cy="100" r="3" fill="#333" />
+                    </svg>
+                </div>
+                <div class="hand-drawn-notice">
+                    <span>* 시계 방향으로 오늘의 일정이 그려집니다.</span>
+                </div>
+            </div>
+        </section>
 
         <section class="budget-card">
             <div class="budget-info">
@@ -45,7 +68,31 @@
             </div>
         </section>
 
+        <!-- Fixed Schedule Section -->
+        <section class="fixed-section glass">
+            <div class="section-header">
+                <h3>고정 일정 <span class="badge">Sleep, Work...</span></h3>
+                <button id="fixed-toggle" class="icon-btn">➕</button>
+            </div>
+            <div id="fixed-input-area" class="input-group hidden">
+                <input type="text" id="fixed-name" placeholder="고정 일정 (예: 수면)" aria-label="고정 일정 이름">
+                <div class="time-input-wrap">
+                    <div class="time-field"><input type="number" id="fixed-h" placeholder="0"><span
+                            class="unit">h</span></div>
+                    <div class="time-field"><input type="number" id="fixed-m" placeholder="0"><span
+                            class="unit">m</span></div>
+                </div>
+                <button id="fixed-add-btn" class="add-button mini">등록</button>
+            </div>
+            <ul id="fixed-list" class="mini-list">
+                <!-- 고정 일정 리스트 -->
+            </ul>
+        </section>
+
         <section class="input-section glass">
+            <div class="section-header">
+                <h3>오늘의 변동 지출 <span class="badge">Spending</span></h3>
+            </div>
             <div class="input-group">
                 <input type="text" id="task-input" placeholder="어떤 일에 시간을 쓰실 건가요?" aria-label="할 일 이름">
                 <div class="time-input-wrap">
