@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시계부 (Time Account Book) - 시간을 자산처럼 관리하세요</title>
+    <meta name="description" content="남은 하루 시간을 가계부처럼 관리하는 프리미엄 할 일 목록 앱입니다.">
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#e0c3fc">
+</head>
+
+<body>
+    <div class="background-gradient"></div>
+
+    <!-- Widget Bubble -->
+    <div id="widget-bubble" class="widget-bubble hidden" title="클릭하여 복귀">
+        <div class="widget-inner">
+            <span id="widget-time">24h 00m</span>
+        </div>
+    </div>
+
+    <div class="app-container" id="main-app">
+        <header>
+            <div class="header-top">
+                <button id="mini-mode-btn" class="mini-btn" title="위젯 모드로 전환">🔳</button>
+                <h1 id="main-title">시계부 <span class="subtitle">Time Acct.</span></h1>
+                <button id="theme-toggle" class="theme-btn" aria-label="테마 변경">🌙</button>
+            </div>
+            <div class="date-display" id="current-date">2026. 02. 11.</div>
+        </header>
+
+        <section class="budget-card">
+            <div class="budget-info">
+                <div class="budget-label">오늘의 잔여 시간 Budget</div>
+                <div class="budget-value" id="time-balance">24h 00m</div>
+            </div>
+            <div class="progress-bar-container">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+        </section>
+
+        <section class="input-section glass">
+            <div class="input-group">
+                <input type="text" id="task-input" placeholder="어떤 일에 시간을 쓰실 건가요?" aria-label="할 일 이름">
+                <div class="time-input-wrap">
+                    <div class="time-field">
+                        <input type="number" id="hour-input" placeholder="0" min="0" max="23" aria-label="시">
+                        <span class="unit">h</span>
+                    </div>
+                    <div class="time-field">
+                        <input type="number" id="min-input" placeholder="0" min="0" max="59" aria-label="분">
+                        <span class="unit">m</span>
+                    </div>
+                </div>
+                <button id="add-btn" class="add-button" aria-label="추가하기">지출</button>
+            </div>
+        </section>
+
+        <main class="todo-section">
+            <div class="section-header">
+                <h2>시간 지출 내역 <span id="task-count">0</span></h2>
+            </div>
+            <ul id="todo-list" class="todo-list">
+                <!-- 리스트 아이템이 여기에 추가됩니다 -->
+            </ul>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
